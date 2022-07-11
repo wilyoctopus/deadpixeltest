@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://lcdtech.info/en/tests/dead.pixel.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Dead-pixel check</title>
+  <link rel="stylesheet" type="text/css" href="./Dead-pixel check_files/main.css">
+  <link rel="stylesheet" href="./Dead-pixel check_files/font-awesome.min.css">
+  <link rel="icon" href="https://lcdtech.info/design/favicon.png">
+  
+  <script src="./Dead-pixel check_files/main.js.download"></script>
+</head>
+<body onload="checkWindowWidth()">
+<!-- <div class=main> -->
+
+<table width="100%" class="main">
+<tbody><tr><td style="width:1em"></td><td>
+
+<table class="pageContainer" cellspacing="0" cellpadding="0" border="0">
+<tbody><tr><td class="top">
+<div class="langSwitcher"> <a href="https://lcdtech.info/tests/dead.pixel.htm">по Русски</a></div><img src="./Dead-pixel check_files/logo.main.top.en.png" alt="LCDTech logo">
+</td></tr>
+<tr><td><table cellspacing="0" cellpadding="0" border="0">
+<tbody><tr valign="top"><td class="mainMenuBlock"><div class="menuBlock">
+<div class="menuButton"><i class="fa fa-bars" aria-hidden="true" onclick="toggleMenu();"></i></div>
+<div class="links">
+<div class="mainMenu">
+<div class="mainMenuLink"><a href="https://lcdtech.info/en/">News</a></div>
+<div class="mainMenuLink"><a href="https://lcdtech.info/en/data/">LCD references and cross reference tables</a></div>
+<div class="mainSubMenuLink"><a href="https://lcdtech.info/en/data/monitor.lcd.panels.htm">LCD Panels for Monitors</a></div>
+<div class="mainSubMenuLink"><a href="https://lcdtech.info/en/data/laptop.lcd.panels.htm">LCD Panels for Laptops</a></div>
+<div class="mainSubMenuLink"><a href="https://lcdtech.info/en/data/lcd.panels.in.monitors.htm">LCD Panels in Monitors</a></div>
+<div class="mainSubMenuLink"><a href="https://lcdtech.info/en/data/lcd.panels.in.laptops.htm">LCD Panels in Laptops</a></div>
+<div class="mainSubMenuLink"><a href="https://lcdtech.info/en/data/monitors.revealed.htm">Monitors revealed photo gallery</a></div>
+<div class="mainSubMenuLink"><a href="https://lcdtech.info/en/data/pixel.size.htm">Pixel size calculator</a></div>
+<div class="mainMenuLink currentSection"><a href="https://lcdtech.info/en/tests/">Online tests</a></div>
+<div class="mainSubMenuLink"><a href="https://lcdtech.info/en/tests/color-shift.htm">Color-shift Test</a></div>
+<div class="mainSubMenuLink"><a href="https://lcdtech.info/en/tests/dynamic.range.htm">Dynamic Range Test (Lights and Shadows)</a></div>
+<div class="mainSubMenuLink"><a href="https://lcdtech.info/en/tests/dynamic.range.banding.htm">Dynamic Range Test (Banding)</a></div>
+<div class="mainSubMenuLink currentSection"><a href="https://lcdtech.info/en/tests/dead.pixel.htm">Dead Pixel Test</a></div>
+<div class="mainSubMenuLink"><a href="https://lcdtech.info/en/tests/lcd.pixels.structure.htm">LCD pixels structure</a></div>
+<div class="mainMenuLink"><a href="https://lcdtech.info/en/links.htm">Links</a></div>
+<div class="mainMenuLink"><a href="https://lcdtech.info/en/about.htm">About</a></div>
+<div class="mainMenuLink"><hr></div>
+<div class="mainMenuLink"><a href="http://axofiber.info/inside/monitor.system.menu.en.htm"><small>Monitor system menu access</small></a></div>
+</div>
+
+</div></div>
+</td><td class="page">
+<p></p><h1>Dead-pixel check</h1>
+
+<p></p>
+<script src="./Dead-pixel check_files/jquery.js.download"></script>
+<script src="./Dead-pixel check_files/jquery-color.js.download"></script>
+
+<script>
+state = 0;
+bgColor = [ "#000000", "#ff0000", "#00ff00", "#0000ff", "#ffffff" ];
+
+function toggleFullScreen () 
+{
+  var videoElement = document.getElementById("testBlock");
+  if (!document.mozFullScreen && !document.webkitFullScreen)
+    if (videoElement.mozRequestFullScreen)
+      videoElement.mozRequestFullScreen();
+    else
+      videoElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+  else
+    if (document.mozCancelFullScreen)
+      document.mozCancelFullScreen();
+    else
+      document.webkitCancelFullScreen();
+}
+
+function nextTest ( event )
+{
+  if ( event.which == 1 || event.which == 32 )
+  {
+    $("#testBlock").css ( "background-color", bgColor[state] ); 
+    state = ( state + 1 ) % 5;
+  }
+  else if ( event.which == 27 )
+  {
+    $("body").unbind ( "keydown" );  
+    $("#testBlock").css ( "display", "none" );
+    toggleFullScreen ();
+  }
+}
+
+function startTest ()
+{
+  $("body").bind ( "keydown", function ( event ) { nextTest ( event ); });
+  $("#testBlock").css ( "display", "block" );
+  toggleFullScreen ();
+}
+
+$(document).ready ( function () {
+  $("#startButton").bind ( "click", function () { startTest ();} );
+  $("#testBlock").bind ( "click", function ( event ) { nextTest ( event ); });
+});
+
+</script>
+
+<style>
+#startButton
+{
+  text-align        : center;
+  width             : 200px;
+  height            : 50px;
+  background-color  : gray;
+  color             : white;
+  line-height       : 50px;
+  cursor            : pointer;
+  margin            : 20px 20px 100px 20px;  
+}
+
+#testBlock
+{
+  display           : none;
+  position          : absolute;
+  z-index           : 5;
+  top               : 0px;
+  left              : 0px;
+  bottom            : 0px;
+  right             : 0px;
+  background-color  : white;
+}
+</style>
+<p>“Dead” pixels—defective pixels on a liquid crystal display (LCD) that are not performing as expected.
+Variations of dead pixels: dark dot, bright dot and partial sub-pixel defects.
+</p><p>
+
+Below you may see examples of dead-pixels:
+</p><p>
+
+<img src="./Dead-pixel check_files/dead.pixel.01.png" style="border: 1px solid #f0f0f0" title="green and blue subpixels stuck in closed state">
+<img src="./Dead-pixel check_files/dead.pixel.02.png" style="border: 1px solid #f0f0f0" title="green and blue subpixels stuck in opened state">
+<img src="./Dead-pixel check_files/dead.pixel.04.png" style="border: 1px solid #f0f0f0" title="red subpixel stucks in closed state">
+<img src="./Dead-pixel check_files/dead.pixel.05.png" style="border: 1px solid #f0f0f0" title="green subpixel stucks in closed state">
+<img src="./Dead-pixel check_files/dead.pixel.03.png" style="border: 1px solid #f0f0f0" title="blue subpixel stucks in closed state">
+</p><p>
+
+Clean the screen gently with a soft cloth and click “Start test”.
+Press “<b>F11</b>” key if your browser window doesn't switch to full screen automatically.
+Press “<b>Esc</b>” key to exit fullscreen mode and to stop test and return to this page.
+Click <b>left mouse button</b> or press “<b>space</b>” to change test-screen.
+</p><p>
+
+Pixels are very small so you have to look carefully all test screens.
+Let your eyes accommodate to screen brightness.
+</p><p>
+
+</p><center>
+<div id="startButton">
+Start test
+</div>
+</center>
+<p></p><p>
+
+</p><div id="testBlock">
+</div><p></p>
+
+<div class="underSign"><div style="float:right;color:gray;">June 03, 2015—June 03, 2015</div><b>Maxim Proskurnya</b><br></div>
+</td></tr>
+<tr class="footer"><td>&nbsp;</td><td><div class="copyRight">© 2006—2022 <b>LCD</b><span style="color:gray">Tech</span>.liquid crystal displays reference<br><a href="mailto:lcdtech.info@gmail.com">lcdtech.info@gmail.com</a></div></td><td></td></tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+</td><td style="width:1em"></td>
+</tr></tbody></table>
+
+
+</body></html>
